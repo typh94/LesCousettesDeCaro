@@ -15,7 +15,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Contact page</title>
+    <title>Dashboard page</title>
 
   
     
@@ -121,8 +121,8 @@
         background-color: red;
        }
         input {
-            background-color: rgba(0, 0, 255, 0.131);
-            border: none;
+     background-color: rgba(0, 0, 255, 0.131);
+     border: none;
      border-radius: 10px;
      padding: 0.5em;
 }
@@ -130,7 +130,34 @@
     padding-left: 2em;
     padding-right: 2em;
 }
+.dashboardLayout{
+    background-color: #00ffff7e!important;
+    padding: 1em;
+    padding-bottom: 25em;
+}
+.check{
+    background-color: rgba(255, 0, 179, 0.37);
+    padding-bottom: 20em;
+
+}
+.welcomeMsg{
+    background-color: rgb(255, 255, 255);
+    padding: 1em;
+}
+.buttonCreate{
+    background-color: rgba(255, 0, 234, 0.326);
+    margin:1em;
+    border-radius: 10px;
+    padding: 0.5em;
+    text-align: center;
+}
+a{
+     color: black;
+}
     </style>
+
+
+  
   </head>
 
 
@@ -142,120 +169,108 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
  
 
+<div class="dashboardLayout">
 
-
-    <div class="container-fluid cursiveF">
-        <div class="col-md-12 header  cursiveF">
-            <h1 class="cursiveF">Les Cousettes De Caro</h1>
-
-        </div>
-   
-    </div><!--End container-->
-
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-    
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse navigationHeader" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto center col-md-12">
-            <li class="nav-item active col-md-2">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown col-md-2">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Get in touch
-              </a>
-              <div class="dropdown-menu col-md-2" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item marginR" href="contact.html">Contact</a>
-                 <div class="dropdown-divider"></div>
-                 <a class="dropdown-item" href="newsletter.html">Newsletter</a>
-                </div>
-            </li>
-               <li class="nav-item col-md-2">
-                <a class="nav-link" href="#">Blog </a>
-              </li>
-  
-              <li class="nav-item col-md-2">
-                <a class="nav-link" href="dashboard.html">Dahboard </a>
-              </li>
-              <li class="nav-item col-md-2">
-                <a class="nav-link" href="#">Store </a>
-              </li>
-  
-              <li class="nav-item  ">
-                <a class="nav-link  " href="#">Analysis </a>
-              </li>
-  
-
-      
-          </ul>
-       
-        </div>
-      </nav>
-      
-      <br>
-      <div class="container-fluid  ">
-        <br>    <br>    <br>    <br>
-
-        <div class="row  ">
-          <div class="col-lg-3  ">
-          </div>
-          <div class="col-lg-6  contactBox ">
-            <h4> Let's stay in touch ! </h4><br>
-            <form action="process_form.php" method="POST">
-                <label for="fname">First name:</label><br>
-                <input type="text" id="fname" name="fname"><br><br>
-        
-                <label for="lname">last name:</label><br>
-                <input type="text" id="lname" name="lname"><br><br>
-        
-                <label for="message">Message:</label><br>
-                <input type="text" id="message" name="message"><br>
-                <br>
-                <input type="submit" value="Submit" class="buttonS">
-            </form>
-        
-
-
-          </div>
-        <div class="col-lg-3 ">
-        </div>
-        </div>
-        <br>    <br>
-    </div><!--End container-->
-
-    
-
-  
-
-
-
-
-
-
-
-<div class="container-fluid  ">
-  <br>    <br>
-
-  <div class="row footer ">
-       
-      <div class="col-lg-2">
-        logo
-      </div> 
-      <div class="col-lg-8">
-        Les Cousettes de Caro<br>
-        Contact Info
-
-      </div>
-      <div class="col-lg-2">
-        link to social media
-      </div>
-     
-  </div>
-</div><!--End container-->
+    logo<br><br><br>
 
  
+    <div class="container-fluid cursiveF  ">
+        <div class="row">
+            <div class="col-lg-3  ">
+                <br>
+        Les Cousettes de Creations (HOME)<br>
+        Profile name<br>
+
+
+        <br> <br> <br>
+        &#129525; <a href="dashboard.html">Dashboard<br><br>
+        </a> 
+ 
+        &#129525; <a href="">Projects Portfolio<br><br>
+        </a>
+
+        
+        &#129525; <a href="">Pattern gallery<br><br>
+        </a>
+        
+        
+        &#129525; <a href="">Tutorial Organizer<br><br>
+        </a>
+        
+        
+        &#129525; <a href="">Fabric orgnizer<br><br>
+        </a>
+        
+
+        <br><br>
+        <br>
+        <a href="">Logout<br><br>
+        </a>
+        
+
+
+            </div><div class="col-lg-9 check "><br><br><br><br>
+                <div class="row">
+                    <div class="col-lg-1">
+                        
+                    </div>
+                    <div class="col-lg-10  ">
+                         <div class="welcomeMsg">
+                        <br> Welcome 
+                         <div class="row">
+                            <div class="col-lg-1"> </div>
+                            <div class="col-lg-4">
+                                <div class="buttonCreate">Create a project  </div>
+                            </div>
+                            <div class="col-lg-2">  </div>
+
+                            <div class="col-lg-4">
+                                <div class="buttonCreate"> Try a new tutorial </div>
+                            </div>
+                            <div class="col-lg-1"> </div>
+
+                            </div><!--end inner row button-->
+                        </div><!--end welcomeMsg-->
+                    <br>
+                    <div class="welcomeMsg">
+                        <br> Started Projects 
+                        <div class="row">
+                            <div class="col-lg-4"> </div>
+                            <div class="col-lg-4"> </div>
+ 
+                            <div class="col-lg-4">
+                                <div class="buttonCreate"> Start a new project
+
+                                </div>
+                            </div>
+                        
+
+                        </div><!--end inner row button-->
+                    </div><!--end welcomeMsg-->
+                    <br>
+                    </div><!--end col-lg-10-->
+                    <div class="col-lg-1"> </div>
+                </div><!--end outer row-->
+            </div><!--END right column col-lg-9-->
+    
+        </div>
+   
+    </div><!--End container--> 
+   
+ 
+
+
+
+</div>
+
+
+
+   
+
+    
+
+  
+
+
 </body>
 </html>
