@@ -28,10 +28,9 @@ if (isset($_POST['submit'])) {
     $folder = "./images/" . $filename;
 
     if ($name != "" && $description != "") {
-        echo 'test';
-        $sql = "INSERT INTO Project_Inventory (`name`, `description`, `image`, `status`) VALUES ('$name', '$description', '$pic', '$status')";
+         $sql = "INSERT INTO Pattern_Inventory (`name`, `description`, `image`, `status`) VALUES ('$name', '$description', '$pic', '$status')";
         if (mysqli_query($conn, $sql)) {
-            echo 'success';
+            echo ' ';
         } else {
             echo "Something went wrong. Please try again later.";
         }
@@ -46,7 +45,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Project Inventory</title>
+    <title>View Pattern Inventory</title>
     <style>
         table {
             width: 80%;
@@ -83,7 +82,7 @@ if (isset($_POST['submit'])) {
        <!-- External CSS -->
     <link rel="stylesheet" href="layout.css">
 
-    <title>Project page overview</title>
+    <title>Pattern page overview</title>
     <style>
   
     </style>
@@ -131,8 +130,8 @@ if (isset($_POST['submit'])) {
         </div>
     </nav>
     <br>
-    <h1>Project Inventory</h1>
-    <h3><a href="project_organizer.html">add a project</a></h3><br><br>
+    <h1>Pattern Inventory</h1>
+    <h3><a href="pattern_organizer.html">add a pattern</a></h3><br><br>
     <div class="filterbox">
         <form method="GET" action="">
             <label for="filter_status">Filter by Status:</label>
@@ -143,10 +142,10 @@ if (isset($_POST['submit'])) {
                 <option value="incomplete" <?php if (isset($_GET['filter_status']) && $_GET['filter_status'] == 'incomplete') echo 'selected'; ?>>Incomplete</option>
             </select>
             <label for="filter_name" style="margin-left: 20px;">Filter by Name:</label>
-            <input type="text" name="filter_name" id="filter_name" value="<?php echo isset($_GET['filter_name']) ? htmlspecialchars($_GET['filter_name']) : ''; ?>" placeholder="Enter project name">
+            <input type="text" name="filter_name" id="filter_name" value="<?php echo isset($_GET['filter_name']) ? htmlspecialchars($_GET['filter_name']) : ''; ?>" placeholder="Enter pattern name">
             <button type="submit" class="btn btn-secondary btn-sm" style="margin-left: 10px;">Filter</button>
             <?php if (isset($_GET['filter_status']) || isset($_GET['filter_name'])): ?>
-                <a href="addprojectdata.php" class="btn btn-secondary btn-sm" style="margin-left: 10px;">Clear Filter</a>
+                <a href="addpatterndata.php" class="btn btn-secondary btn-sm" style="margin-left: 10px;">Clear Filter</a>
             <?php endif; ?>
         </form>
     </div>
@@ -156,7 +155,7 @@ if (isset($_POST['submit'])) {
     $filter_status = isset($_GET['filter_status']) ? $_GET['filter_status'] : '';
     $filter_name = isset($_GET['filter_name']) ? $_GET['filter_name'] : '';
 
-    $sqlContactInfo = "SELECT project_id, name, description, status, image FROM Project_Inventory WHERE 1=1";
+    $sqlContactInfo = "SELECT id, name, description, status, image FROM Pattern_Inventory WHERE 1=1";
 
     if (!empty($filter_status)) {
         $sqlContactInfo .= " AND status = '" . $conn->real_escape_string($filter_status) . "'";
@@ -172,7 +171,7 @@ if (isset($_POST['submit'])) {
         echo "<table>";
         echo "<thead>";
         echo "<tr>";
-        echo "<th>Project Name</th>";
+        echo "<th>Pattern Name</th>";
         echo "<th>Description</th>";
         echo "<th>Picture</th>";
         echo "<th>Status</th>";
@@ -199,8 +198,8 @@ if (isset($_POST['submit'])) {
             }
             echo "</td>";
             echo "<td>";
-            echo "<a href='editproject.php?project_id=" . htmlspecialchars($row["project_id"]) . "' class='btn btn-primary btn-sm me-2'>Edit</a>";
-            echo "<a href='deleteproject.php?project_id=" . htmlspecialchars($row["project_id"]) . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this project?\");'>Delete</a>";
+            echo "<a href='editpattern.php?id=" . htmlspecialchars($row["id"]) . "' class='btn btn-primary btn-sm me-2'>Edit</a>";
+            echo "<a href='deletepattern.php?id=" . htmlspecialchars($row["id"]) . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this pattern?\");'>Delete</a>";
             echo "</td>";
             echo "</tr>";
         }

@@ -16,33 +16,30 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-echo'hey';
-
- // Check if an ID is provided in the URL and is numeric
-if (isset($_GET['project_id']) && is_numeric($_GET['project_id'])) {
-    $id_to_delete = $_GET['project_id'];
-    echo'hey2';
-
+ 
+// Check if an ID is provided in the URL and is numeric
+if (isset($_GET['fabric_id']) && is_numeric($_GET['fabric_id'])) {
+    $id_to_delete = $_GET['fabric_id'];
+ 
     // Prepare and execute the DELETE query
-    $sql = "DELETE FROM Project_Inventory WHERE project_id = ?";
+    $sql = "DELETE FROM Fabric_Inventory WHERE fabric_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id_to_delete);
-    echo'ehy';
     if ($stmt->execute()) {
-        $msg = "Project deleted successfully!";
+        $msg = "Fabric deleted successfully!";
         // Optionally, you could also delete the associated image file from the 'images' directory here
         // if you want to keep the file system clean.
     } else {
-        $msg = "Error deleting project: " . $stmt->error;
+        $msg = "Error deleting fabric: " . $stmt->error;
     }
     $stmt->close();
     $conn->close(); // Move this here to ensure the connection is closed before redirecting.
 
-    header("Location: addprojectdata.php?message=" . urlencode($msg)); // Redirect back to the inventory page with a message
+    header("Location: addfabricdata.php?message=" . urlencode($msg)); // Redirect back to the inventory page with a message
     exit();
 } else {
     // If no valid ID is provided, redirect back to the inventory page with an error
-    header("Location: addprojectdata.php?error=Invalid delete request");
+    header("Location: addfabricdata.php?error=Invalid delete request");
     exit();
 }
 

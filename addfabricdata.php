@@ -20,8 +20,9 @@ if ($conn->connect_error) {
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $status = $_POST['status'];
     $pic = $_FILES["image"]["name"];
+    $material = $_POST['material'];
+    $stock = $_POST['stock'];
 
     $filename = $_FILES["image"]["name"];
     $tempname = $_FILES["image"]["tmp_name"];
@@ -29,7 +30,7 @@ if (isset($_POST['submit'])) {
 
     if ($name != "" && $description != "") {
         echo 'test';
-        $sql = "INSERT INTO Project_Inventory (`name`, `description`, `image`, `status`) VALUES ('$name', '$description', '$pic', '$status')";
+        $sql = "INSERT INTO Fabric_Inventory (`name`, `description`, `image`, `material`, `stock`) VALUES ('$name', '$description', '$pic', '$material', '$stock')";
         if (mysqli_query($conn, $sql)) {
             echo 'success';
         } else {
@@ -46,7 +47,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Project Inventory</title>
+    <title>Fabric Inventory</title>
     <style>
         table {
             width: 80%;
@@ -80,13 +81,9 @@ if (isset($_POST['submit'])) {
     <link href='https://fonts.googleapis.com/css?family=Birthstone' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 
-       <!-- External CSS -->
+    <!-- External CSS -->
     <link rel="stylesheet" href="layout.css">
-
-    <title>Project page overview</title>
-    <style>
-  
-    </style>
+    
 </head>
 <body>
     <div class="container-fluid">
@@ -131,22 +128,22 @@ if (isset($_POST['submit'])) {
         </div>
     </nav>
     <br>
-    <h1>Project Inventory</h1>
-    <h3><a href="project_organizer.html">add a project</a></h3><br><br>
+    <h1>Fabric Inventory</h1>
+    <h3><a href="fabric_organizer.html">add a fabric</a></h3><br><br>
     <div class="filterbox">
         <form method="GET" action="">
-            <label for="filter_status">Filter by Status:</label>
+            <label for="filter_status">Filter by Material:</label>
             <select name="filter_status" id="filter_status">
-                <option value="">All Statuses</option>
-                <option value="started" <?php if (isset($_GET['filter_status']) && $_GET['filter_status'] == 'started') echo 'selected'; ?>>Started</option>
-                <option value="not started" <?php if (isset($_GET['filter_status']) && $_GET['filter_status'] == 'not started') echo 'selected'; ?>>Not Started</option>
-                <option value="incomplete" <?php if (isset($_GET['filter_status']) && $_GET['filter_status'] == 'incomplete') echo 'selected'; ?>>Incomplete</option>
+                <option value="">All Materials</option>
+                <option value="Synthetic" <?php if (isset($_GET['filter_status']) && $_GET['filter_status'] == 'Synthetic') echo 'selected'; ?>>Synthetic</option>
+                <option value="Natural" <?php if (isset($_GET['filter_status']) && $_GET['filter_status'] == 'Natural') echo 'selected'; ?>>Natural</option>
+                <option value="Blended" <?php if (isset($_GET['filter_status']) && $_GET['filter_status'] == 'Blended') echo 'selected'; ?>>Blended</option>
             </select>
             <label for="filter_name" style="margin-left: 20px;">Filter by Name:</label>
-            <input type="text" name="filter_name" id="filter_name" value="<?php echo isset($_GET['filter_name']) ? htmlspecialchars($_GET['filter_name']) : ''; ?>" placeholder="Enter project name">
+            <input type="text" name="filter_name" id="filter_name" value="<?php echo isset($_GET['filter_name']) ? htmlspecialchars($_GET['filter_name']) : ''; ?>" placeholder="Enter fabric name">
             <button type="submit" class="btn btn-secondary btn-sm" style="margin-left: 10px;">Filter</button>
-            <?php if (isset($_GET['filter_status']) || isset($_GET['filter_name'])): ?>
-                <a href="addprojectdata.php" class="btn btn-secondary btn-sm" style="margin-left: 10px;">Clear Filter</a>
+            <?php if ((isset($_GET['filter_status']) && $_GET['filter_status'] != '') || (isset($_GET['filter_name']) && $_GET['filter_name'] != '')): ?>
+                <a href="addfabricdata.php" class="btn btn-secondary btn-sm" style="margin-left: 10px;">Clear Filter</a>
             <?php endif; ?>
         </form>
     </div>
@@ -156,13 +153,13 @@ if (isset($_POST['submit'])) {
     $filter_status = isset($_GET['filter_status']) ? $_GET['filter_status'] : '';
     $filter_name = isset($_GET['filter_name']) ? $_GET['filter_name'] : '';
 
-    $sqlContactInfo = "SELECT project_id, name, description, status, image FROM Project_Inventory WHERE 1=1";
+    $sqlContactInfo = "SELECT fabric_id, name, description, material, image, stock FROM Fabric_Inventory WHERE 1=1";
 
-    if (!empty($filter_status)) {
-        $sqlContactInfo .= " AND status = '" . $conn->real_escape_string($filter_status) . "'";
+    if ($filter_status != '') {
+        $sqlContactInfo .= " AND material = '" . $conn->real_escape_string($filter_status) . "'";
     }
 
-    if (!empty($filter_name)) {
+    if ($filter_name != '') {
         $sqlContactInfo .= " AND name LIKE '%" . $conn->real_escape_string($filter_name) . "%'";
     }
 
@@ -172,12 +169,14 @@ if (isset($_POST['submit'])) {
         echo "<table>";
         echo "<thead>";
         echo "<tr>";
-        echo "<th>Project Name</th>";
+        echo "<th>Fabric Name</th>";
         echo "<th>Description</th>";
         echo "<th>Picture</th>";
-        echo "<th>Status</th>";
+        echo "<th>Material</th>";
+        echo "<th>Stock</th>";
         echo "<th>Actions</th>";
-        echo "</tr>";
+
+         echo "</tr>";
         echo "</thead>";
         echo "<tbody>";
 
@@ -192,18 +191,14 @@ if (isset($_POST['submit'])) {
                 echo "";
             }
             echo "</td>";
-            if (!empty($row["status"])) {
-                echo "<td>" . htmlspecialchars($row["status"]) . "</td>";
-            } else {
-                echo "";
-            }
-            echo "</td>";
-            echo "<td>";
-            echo "<a href='editproject.php?project_id=" . htmlspecialchars($row["project_id"]) . "' class='btn btn-primary btn-sm me-2'>Edit</a>";
-            echo "<a href='deleteproject.php?project_id=" . htmlspecialchars($row["project_id"]) . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this project?\");'>Delete</a>";
-            echo "</td>";
-            echo "</tr>";
-        }
+    echo "<td>" . htmlspecialchars($row["material"]) . "</td>";
+    echo "<td>" . htmlspecialchars($row["stock"]) . "</td>";
+    echo "<td>";
+    echo "<a href='editfabric.php?fabric_id=" . htmlspecialchars($row["fabric_id"]) . "' class='btn btn-primary btn-sm me-2'>Edit</a>";
+    echo "<a href='deletefabric.php?fabric_id=" . htmlspecialchars($row["fabric_id"]) . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this fabric?\");'>Delete</a>";
+    echo "</td>";
+    echo "</tr>";
+}
 
         echo "</tbody>";
         echo "</table>";
