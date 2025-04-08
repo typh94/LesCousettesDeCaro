@@ -1,39 +1,3 @@
-<?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-// Database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cousettes";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// --- Retrieve data from Contact_Info ---
-$sqlContactInfo = "SELECT first_name, last_name, message, email FROM Contact_Info";
-$resultContactInfo = $conn->query($sqlContactInfo);
-
-// --- Retrieve data from Email_List ---
-$sqlEmailList = "SELECT email FROM Email_List";
-$resultEmailList = $conn->query($sqlEmailList);
-?>
-
-
-
-
-
-
-
-
-
 
 
 <!doctype html>
@@ -54,17 +18,8 @@ $resultEmailList = $conn->query($sqlEmailList);
     <link href='https://fonts.googleapis.com/css?family=Birthstone' rel='stylesheet'>
 
 
-    <title>Landing page</title>
+    <title>Add a Tutorial to Inventory</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-    <style>
-    .styleFont {
-    /*  font-family: "Sofia", sans-serif;*/
-    font-family: 'Send Flowers';font-size: 3em;
-
-      color: #000080; /*or #008080 or #333333 or #000080*/
-    }
-    </style>
-    
  
     
     <style>
@@ -202,20 +157,6 @@ $resultEmailList = $conn->query($sqlEmailList);
             text-align: center;
             padding: 2em;
            }
-
-           table {
-            width: 80%;
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
     </style>
   </head>
 
@@ -240,7 +181,7 @@ $resultEmailList = $conn->query($sqlEmailList);
           <div class="collapse navbar-collapse navigationHeader" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto center col-md-12">
               <li class="nav-item active col-md-2">
-                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="hoome.php">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item dropdown col-md-2">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -264,76 +205,53 @@ $resultEmailList = $conn->query($sqlEmailList);
                 </li>
     
                 <li class="nav-item  ">
-                  <a class="nav-link  " href="imageSubmit.html">Analysis </a>
+                  <a class="nav-link  " href="analysis.html">Analysis </a>
                 </li>
-    
-  
-        
             </ul>
          
           </div>
         </nav><br>
      <section>
+        <h1 style="text-align: center;margin: 50px 0;">Add a Tutorial   </h1>
+        <div class="container">
+            <form action="addtutorialdata.php" method="post" enctype="multipart/form-data" >
+               <div class="row">
+                    <div class="form-group col-lg-2">
+                        <label for="">Tutorial Name</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group  col-lg-3">
+                        <label for="">Description</label>
+                        <input type="text" name="description" id="description" class="form-control" required>
+                    </div>
 
-    <h1>User Information from Contact_Info for Contact Form</h1>
+                    <div class="form-group  col-lg-3">
+                        <label for="">Link</label>
+                        <input type="text" name="link" id="link" class="form-control" required>
+                    </div>
 
-    <?php
-    if ($resultContactInfo->num_rows > 0) {
-        echo "<table>";
-        echo "<thead>";
-        echo "<tr>";
-        echo "<th>First Name</th>";
-        echo "<th>Last Name</th>";
-        echo "<th>Message</th>";
-        echo "<th>Email</th>";
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
+                    <div class="form-group col-lg-2">
+                        <label for="">Status</label>
+                        <select name="status" id="status" class="form-control" required>
+                            <option value="">Select a Status</option>
+                            <option value="watched">Watched</option>
+                            <option value="not watched">To Watch</option>
+                            <option value="watched - favorite">Watched - Favorite</option>
+                         </select>
+                    </div>
 
-        while ($row = $resultContactInfo->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($row["first_name"]) . "</td>";
-            echo "<td>" . htmlspecialchars($row["last_name"]) . "</td>";
-            echo "<td>" . htmlspecialchars($row["message"]) . "</td>";
-            echo "<td>" . htmlspecialchars($row["email"]) . "</td>";
-            echo "</tr>";
-        }
 
-        echo "</tbody>";
-        echo "</table>";
-    } else {
-        echo "<p>No user information found in Contact Info.</p>";
-    }
-    ?>
+                    <div class="form-group col-lg-2" style="display: grid;align-items:  flex-end;">
+                        <input type="submit" name="submit" id="submit" class="btn btn-primary">
+                    </div>
+               </div>
+            </form>
+        </div>
+        <h1 style="text-align: center;margin: 50px 0;">See your tutorials  <a href="addtutorialdata.php">click here</a> </h1>
+       
 
-    <h1>Email Information from Email_List for Newsletter Form</h1>
-
-    <?php
-    if ($resultEmailList->num_rows > 0) {
-        echo "<table>";
-        echo "<thead>";
-        echo "<tr>";
-        echo "<th>email</th>";
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
-
-        while ($row = $resultEmailList->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($row["email"]) . "</td>";
-            echo "</tr>";
-        }
-
-        echo "</tbody>";
-        echo "</table>";
-    } else {
-        echo "<p>No email information found in Email_List.</p>";
-    }
-    ?>
-
+    </section>
 </body>
-</html>
-<?php
-// Close the connection only once at the very end
-$conn->close();
-?>
+
+</html><!DOCTYPE html>
+<html lang="en">

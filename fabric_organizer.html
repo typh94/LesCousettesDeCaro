@@ -1,39 +1,3 @@
-<?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-// Database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cousettes";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// --- Retrieve data from Contact_Info ---
-$sqlContactInfo = "SELECT first_name, last_name, message, email FROM Contact_Info";
-$resultContactInfo = $conn->query($sqlContactInfo);
-
-// --- Retrieve data from Email_List ---
-$sqlEmailList = "SELECT email FROM Email_List";
-$resultEmailList = $conn->query($sqlEmailList);
-?>
-
-
-
-
-
-
-
-
-
 
 
 <!doctype html>
@@ -42,29 +6,20 @@ $resultEmailList = $conn->query($sqlEmailList);
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!--goog font--> 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=DM+Serif+Text:ital@0;1&family=Dancing+Script:wght@500&family=Dynalight&family=Playwrite+HR+Lijeva:wght@300&family=Roboto:wght@236&display=swap" rel="stylesheet">
-  
-  <link href='https://fonts.googleapis.com/css?family=Send Flowers' rel='stylesheet'>
+    <!--goog font--> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=DM+Serif+Text:ital@0;1&family=Dancing+Script:wght@500&family=Dynalight&family=Playwrite+HR+Lijeva:wght@300&family=Roboto:wght@236&display=swap" rel="stylesheet">
+    
+    <link href='https://fonts.googleapis.com/css?family=Send Flowers' rel='stylesheet'>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Birthstone' rel='stylesheet'>
 
 
-    <title>Landing page</title>
+    <title>Add a Fabric to Inventory</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-    <style>
-    .styleFont {
-    /*  font-family: "Sofia", sans-serif;*/
-    font-family: 'Send Flowers';font-size: 3em;
-
-      color: #000080; /*or #008080 or #333333 or #000080*/
-    }
-    </style>
-    
  
     
     <style>
@@ -83,9 +38,7 @@ $resultEmailList = $conn->query($sqlEmailList);
         .marginR{
             margin-right: 1em;
         }
-        .container-fluid{
-            
-        }
+        
 
         /*google font*/
 
@@ -202,20 +155,6 @@ $resultEmailList = $conn->query($sqlEmailList);
             text-align: center;
             padding: 2em;
            }
-
-           table {
-            width: 80%;
-            border-collapse: collapse;
-            margin: 20px auto;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
     </style>
   </head>
 
@@ -240,7 +179,7 @@ $resultEmailList = $conn->query($sqlEmailList);
           <div class="collapse navbar-collapse navigationHeader" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto center col-md-12">
               <li class="nav-item active col-md-2">
-                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item dropdown col-md-2">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -264,7 +203,7 @@ $resultEmailList = $conn->query($sqlEmailList);
                 </li>
     
                 <li class="nav-item  ">
-                  <a class="nav-link  " href="imageSubmit.html">Analysis </a>
+                  <a class="nav-link  " href="analysis.html">Analysis </a>
                 </li>
     
   
@@ -274,66 +213,51 @@ $resultEmailList = $conn->query($sqlEmailList);
           </div>
         </nav><br>
      <section>
+        <h1 style="text-align: center;margin: 50px 0;">Add a Fabric   </h1>
+        <div class="container">
+            <form action="addfabricdata.php" method="post" enctype="multipart/form-data" >
+               <div class="row">
+                    <div class="form-group col-lg-2">
+                        <label for="">Fabric Name</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group  col-lg-3">
+                        <label for="">Description</label>
+                        <input type="text" name="description" id="description" class="form-control" required>
+                    </div>
 
-    <h1>User Information from Contact_Info for Contact Form</h1>
+                    <div class="form-group col-lg-3">
+                        <label for=""> Select image to upload:</label>
+                        <input type="file" name="image" id="image">
+                     </div>
 
-    <?php
-    if ($resultContactInfo->num_rows > 0) {
-        echo "<table>";
-        echo "<thead>";
-        echo "<tr>";
-        echo "<th>First Name</th>";
-        echo "<th>Last Name</th>";
-        echo "<th>Message</th>";
-        echo "<th>Email</th>";
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
+                     <div class="form-group  col-lg-2">
+                        <label for="">Material:</label>
+                        <select name="material" id="material" class="form-control" required>
+                            <option value="">Select a Fiiber</option>
+                            <option value="synthetic">Synthetic</option>
+                            <option value="natural">Natural</option>
+                            <option value="blended">Blended</option>
+                         </select>
+                    </div>
 
-        while ($row = $resultContactInfo->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($row["first_name"]) . "</td>";
-            echo "<td>" . htmlspecialchars($row["last_name"]) . "</td>";
-            echo "<td>" . htmlspecialchars($row["message"]) . "</td>";
-            echo "<td>" . htmlspecialchars($row["email"]) . "</td>";
-            echo "</tr>";
-        }
+                    <div class="form-group  col-lg-1">
+                        <label for="">Yardage:</label>
+                        <input type="number" name="stock" id="stock" class="form-control" required>
+                    </div>
 
-        echo "</tbody>";
-        echo "</table>";
-    } else {
-        echo "<p>No user information found in Contact Info.</p>";
-    }
-    ?>
 
-    <h1>Email Information from Email_List for Newsletter Form</h1>
+                    <div class="form-group col-lg-1" style="display: grid;align-items:  flex-end;">
+                        <input type="submit" name="submit" id="submit" class="btn btn-primary">
+                    </div>
+               </div>
+            </form>
+        </div>
+        <h1 style="text-align: center;margin: 50px 0;">See your Fabrics  <a href="addfabricdata.php">click here</a> </h1>
+       
 
-    <?php
-    if ($resultEmailList->num_rows > 0) {
-        echo "<table>";
-        echo "<thead>";
-        echo "<tr>";
-        echo "<th>email</th>";
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
-
-        while ($row = $resultEmailList->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($row["email"]) . "</td>";
-            echo "</tr>";
-        }
-
-        echo "</tbody>";
-        echo "</table>";
-    } else {
-        echo "<p>No email information found in Email_List.</p>";
-    }
-    ?>
-
+    </section>
 </body>
-</html>
-<?php
-// Close the connection only once at the very end
-$conn->close();
-?>
+
+</html><!DOCTYPE html>
+<html lang="en">

@@ -23,16 +23,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $first_name = $_POST['fname'];
     $last_name = $_POST['lname'];
+    $email = $_POST['email'];
     $message = $_POST['message'];
 
     // Prepare and bind
-    $stmt = $conn->prepare("INSERT INTO Contact_Info (first_name, last_name, message) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO Contact_Info (first_name, last_name, email, message) VALUES (?, ?, ?, ?)");
 
     if ($stmt === false) {
         die("Error preparing statement: " . $conn->error);
     }
 
-    $stmt->bind_param("sss", $first_name, $last_name, $message);
+    $stmt->bind_param("ssss", $first_name, $last_name, $email, $message);
 
     // Execute the query
     if ($stmt->execute()) {
