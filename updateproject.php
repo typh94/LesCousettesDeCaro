@@ -43,7 +43,7 @@ if (isset($_POST['update']) && isset($_POST['project_id']) && is_numeric($_POST[
 
         // Move the new uploaded image
         if (move_uploaded_file($tempname, $folder)) {
-            // Update the image path in the database
+            // Update image path  
             $sql_image = "UPDATE Project_Inventory SET image = ? WHERE project_id = ?";
             $stmt_image = $conn->prepare($sql_image);
             $stmt_image->bind_param("si", $filename, $project_id);
@@ -55,7 +55,7 @@ if (isset($_POST['update']) && isset($_POST['project_id']) && is_numeric($_POST[
         }
     }
 
-    header("Location: addprojectdata.php?message=" . urlencode($msg)); // Redirect back to your project list
+    header("Location: addprojectdata.php?message=" . urlencode($msg));  
     exit();
 } else {
     // If the update form wasn't submitted correctly

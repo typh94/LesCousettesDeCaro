@@ -17,28 +17,27 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
  
-// Check if an ID is provided in the URL and is numeric
+// Check if ID in URL 
 if (isset($_GET['fabric_id']) && is_numeric($_GET['fabric_id'])) {
     $id_to_delete = $_GET['fabric_id'];
  
-    // Prepare and execute the DELETE query
+    //  DELETE query
     $sql = "DELETE FROM Fabric_Inventory WHERE fabric_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id_to_delete);
     if ($stmt->execute()) {
         $msg = "Fabric deleted successfully!";
-        // Optionally, you could also delete the associated image file from the 'images' directory here
-        // if you want to keep the file system clean.
+        // add code to delete the matching image file from the 'images' directory here
     } else {
         $msg = "Error deleting fabric: " . $stmt->error;
     }
     $stmt->close();
-    $conn->close(); // Move this here to ensure the connection is closed before redirecting.
+    $conn->close();  
 
-    header("Location: addfabricdata.php?message=" . urlencode($msg)); // Redirect back to the inventory page with a message
+    header("Location: addfabricdata.php?message=" . urlencode($msg));  
     exit();
 } else {
-    // If no valid ID is provided, redirect back to the inventory page with an error
+    //  no valid ID 
     header("Location: addfabricdata.php?error=Invalid delete request");
     exit();
 }

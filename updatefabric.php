@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 }
 
 if (isset($_POST['update']) && isset($_POST['fabric_id']) && is_numeric($_POST['fabric_id'])) {
-    $fabric_id = $_POST['fabric_id']; // Assign fabric_id from POST data
+    $fabric_id = $_POST['fabric_id']; 
     $name = $_POST['name'];
     $description = $_POST['description'];
     $material = $_POST['material'];
@@ -46,7 +46,7 @@ if (isset($_POST['update']) && isset($_POST['fabric_id']) && is_numeric($_POST['
 
         // Move the new uploaded image
         if (move_uploaded_file($tempname, $folder)) {
-            // Update the image path in the database
+            // Update the image path  
             $sql_image = "UPDATE Fabric_Inventory SET image = ? WHERE fabric_id = ?";
             $stmt_image = $conn->prepare($sql_image);
             $stmt_image->bind_param("si", $filename, $fabric_id);
@@ -58,7 +58,7 @@ if (isset($_POST['update']) && isset($_POST['fabric_id']) && is_numeric($_POST['
         }
     }
 
-    header("Location: addfabricdata.php?message=" . urlencode($msg)); // Redirect back to your fabric list
+    header("Location: addfabricdata.php?message=" . urlencode($msg)); 
     exit();
 } else {
     // If the update form wasn't submitted correctly

@@ -17,30 +17,29 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
- // Check if an ID is provided in the URL and is numeric
+ // Check if ID in URL  
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id_to_delete = $_GET['id'];
     echo'hey2';
 
-    // Prepare and execute the DELETE query
+    //   DELETE query
     $sql = "DELETE FROM Tutorial_Inventory WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id_to_delete);
     echo'ehy';
     if ($stmt->execute()) {
         $msg = "Patten deleted successfully!";
-        // Optionally, you could also delete the associated image file from the 'images' directory here
-        // if you want to keep the file system clean.
+        // add code to delete the matching image file from the 'images' directory here
     } else {
         $msg = "Error deleting tutorial: " . $stmt->error;
     }
     $stmt->close();
-    $conn->close(); // Move this here to ensure the connection is closed before redirecting.
+    $conn->close();  
 
-    header("Location: addtutorialdata.php?message=" . urlencode($msg)); // Redirect back to the inventory page with a message
+    header("Location: addtutorialdata.php?message=" . urlencode($msg));  
     exit();
 } else {
-    // If no valid ID is provided, redirect back to the inventory page with an error
+    // no valid ID  
     header("Location: addtutorialdata.php?error=Invalid delete request");
     exit();
 }

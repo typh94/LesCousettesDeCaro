@@ -17,24 +17,29 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// --- Retrieve data from Contact_Info ---
-$sqlContactInfo = "SELECT first_name, last_name, message, email FROM Contact_Info";
+// Update reply_status if form is submitted
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['answered'])) {
+    foreach ($_POST['answered'] as $id) {
+        $id = intval($id); // Sanitize input
+        $updateQuery = "UPDATE Contact_Info SET reply_status = 1 WHERE contact_id = $id";
+        $conn->query($updateQuery);
+    }
+}
+
+// filter selection
+$filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
+$whereClause = '';
+if ($filter === 'answered') {
+    $whereClause = "WHERE reply_status = 1";
+} elseif ($filter === 'pending') {
+    $whereClause = "WHERE reply_status = 0";
+}
+
+// Update the query to include the filter
+$sqlContactInfo = "SELECT contact_id, first_name, last_name, message, email, reply_status FROM Contact_Info $whereClause";
 $resultContactInfo = $conn->query($sqlContactInfo);
 
-// --- Retrieve data from Email_List ---
-$sqlEmailList = "SELECT email FROM Email_List";
-$resultEmailList = $conn->query($sqlEmailList);
 ?>
-
-
-
-
-
-
-
-
-
-
 
 <!doctype html>
 <html lang="en">
@@ -60,7 +65,6 @@ $resultEmailList = $conn->query($sqlEmailList);
     .styleFont {
     /*  font-family: "Sofia", sans-serif;*/
     font-family: 'Send Flowers';font-size: 3em;
-
       color: #000080; /*or #008080 or #333333 or #000080*/
     }
     </style>
@@ -175,8 +179,8 @@ $resultEmailList = $conn->query($sqlEmailList);
          }
         img{
           width: 70%;
-  height: 70%;
-  object-fit: contain;
+          height: 70%;
+          object-fit: contain;
 
          }
       
@@ -207,15 +211,42 @@ $resultEmailList = $conn->query($sqlEmailList);
             width: 80%;
             border-collapse: collapse;
             margin: 20px auto;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #00343a;
+                color: white;
+                text-align: center;
+
+            }
+            table{
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.22);
+            }
+            th, td {
+                text-align: center;
+            }
+            .checkbox-cell {
+                width: 10%;
+            }
+            .centerit{
+              text-align: center;
+              align-items: center;
+            }
+            button{
+                background-color: #00343a!important;
+                color: white;
+                border: 1px solid #00343a!important;
+                padding: 10px 20px!important;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .leftbox{
+              padding-left: 10rem;
+            }
     </style>
   </head>
 
@@ -257,83 +288,85 @@ $resultEmailList = $conn->query($sqlEmailList);
                 </li>
     
                 <li class="nav-item col-md-2">
-                  <a class="nav-link" href="dashboard.html">Dahboard </a>
+                <a class="nav-link" href="loginRegisterationSystem/dashboard2.php">Dashboard</a>
                 </li>
                 <li class="nav-item col-md-2">
-                  <a class="nav-link" href="store.html">Store </a>
+                  <a class="nav-link" href="store.php">Store </a>
                 </li>
     
                 <li class="nav-item  ">
-                  <a class="nav-link  " href="imageSubmit.html">Analysis </a>
+                  <a class="nav-link  " href="analysis.php">Analysis </a>
                 </li>
-    
-  
-        
             </ul>
          
           </div>
         </nav><br>
      <section>
 
-    <h1>User Information from Contact_Info for Contact Form</h1>
+    <h1>Messages from Contact Form: </h1>
+    <div class="text-center  mb-3"> <!-- text-center-->
+        <form method="GET" action="">
+            <label for="filter">Filter by Reply Status:</label><br>
+            <select name="filter" id="filter" onchange="this.form.submit()">
+                <option value="all" <?php echo $filter === 'all' ? 'selected' : ''; ?>>All</option>
+                <option value="answered" <?php echo $filter === 'answered' ? 'selected' : ''; ?>>Answered</option>
+                <option value="pending" <?php echo $filter === 'pending' ? 'selected' : ''; ?>>Pending</option>
+            </select>
+        </form>
+    </div>
+    <form method="POST" action="">
+        <?php
+        if ($resultContactInfo->num_rows > 0) {
+            echo "<div class='text-center'>";
+            echo "<button type='submit' class='btn btn-primary mt-3'>Update Reply Status</button>";
+            echo "</div>";
 
-    <?php
-    if ($resultContactInfo->num_rows > 0) {
-        echo "<table>";
-        echo "<thead>";
-        echo "<tr>";
-        echo "<th>First Name</th>";
-        echo "<th>Last Name</th>";
-        echo "<th>Message</th>";
-        echo "<th>Email</th>";
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
-
-        while ($row = $resultContactInfo->fetch_assoc()) {
+            echo "<table>";
+            echo "<thead>";
             echo "<tr>";
-            echo "<td>" . htmlspecialchars($row["first_name"]) . "</td>";
-            echo "<td>" . htmlspecialchars($row["last_name"]) . "</td>";
-            echo "<td>" . htmlspecialchars($row["message"]) . "</td>";
-            echo "<td>" . htmlspecialchars($row["email"]) . "</td>";
+            echo "<th>First Name</th>";
+            echo "<th>Last Name</th>";
+            echo "<th>Message</th>";
+            echo "<th>Email</th>";
+            echo "<th>Reply Status</th>";
+            echo "<th>Mark as Answered</th>";
             echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
+
+            while ($row = $resultContactInfo->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($row["first_name"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["last_name"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["message"]) . "</td>";
+                echo "<td>" . htmlspecialchars($row["email"]) . "</td>";
+                echo "<td>" . ($row["reply_status"] ? "Answered" : "Pending") . "</td>";
+                echo "<td class='checkbox-cell'>";
+                if (!$row["reply_status"]) {
+                    echo "<input type='checkbox' name='answered[]' value='" . $row["contact_id"] . "'>";
+                }
+                echo "</td>";
+                echo "</tr>";
+            }
+
+            echo "</tbody>";
+            echo "</table>";
+        } else {
+            echo "<p>No user information found in Contact Info.</p>";
         }
+        ?>
+    </form>
 
-        echo "</tbody>";
-        echo "</table>";
-    } else {
-        echo "<p>No user information found in Contact Info.</p>";
-    }
-    ?>
-
-    <h1>Email Information from Email_List for Newsletter Form</h1>
-
-    <?php
-    if ($resultEmailList->num_rows > 0) {
-        echo "<table>";
-        echo "<thead>";
-        echo "<tr>";
-        echo "<th>email</th>";
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
-
-        while ($row = $resultEmailList->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($row["email"]) . "</td>";
-            echo "</tr>";
-        }
-
-        echo "</tbody>";
-        echo "</table>";
-    } else {
-        echo "<p>No email information found in Email_List.</p>";
-    }
-    ?>
-
+   
 </body>
+<!-- Required JavaScript for Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
 </html>
 <?php
-// Close the connection only once at the very end
+// Close the connection  
 $conn->close();
 ?>

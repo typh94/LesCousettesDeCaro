@@ -16,32 +16,30 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-echo'hey';
 
- // Check if an ID is provided in the URL and is numeric
+ // Check  ID is provided in URL 
 if (isset($_GET['project_id']) && is_numeric($_GET['project_id'])) {
     $id_to_delete = $_GET['project_id'];
     echo'hey2';
 
-    // Prepare and execute the DELETE query
+    //  DELETE query
     $sql = "DELETE FROM Project_Inventory WHERE project_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id_to_delete);
     echo'ehy';
     if ($stmt->execute()) {
         $msg = "Project deleted successfully!";
-        // Optionally, you could also delete the associated image file from the 'images' directory here
-        // if you want to keep the file system clean.
+        // add code to delete the matching image file from the 'images' directory here
     } else {
         $msg = "Error deleting project: " . $stmt->error;
     }
     $stmt->close();
-    $conn->close(); // Move this here to ensure the connection is closed before redirecting.
+    $conn->close();  
 
-    header("Location: addprojectdata.php?message=" . urlencode($msg)); // Redirect back to the inventory page with a message
+    header("Location: addprojectdata.php?message=" . urlencode($msg));  
     exit();
 } else {
-    // If no valid ID is provided, redirect back to the inventory page with an error
+    // no valid ID  
     header("Location: addprojectdata.php?error=Invalid delete request");
     exit();
 }

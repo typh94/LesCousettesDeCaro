@@ -16,11 +16,11 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
- // Check if an ID is provided in the URL
+ // Check if ID  in URL
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = $_GET['id'];
  
-    // Fetch the pattern data based on the ID
+    // Fetch data  
     $sql = "SELECT id, name, description, status, image FROM Pattern_Inventory WHERE id = ?";  
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
@@ -30,15 +30,15 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     if ($result->num_rows == 1) {
         $pattern = $result->fetch_assoc();
     } else {
-        // If the ID is not found, redirect back to the inventory page
-    //    header("Location: addpatterndata.php"); // Adjust to your inventory page
+        // If ID is not found, redirect  
+       //  header("Location: addpatterndata.php");  
         exit();
     }
     $stmt->close();
 } else {
-    // If no valid ID is provided, redirect back to the inventory page
-  //  header("Location: addpatterndata.php"); // Adjust to your inventory page
-    exit();
+        // If ID is not found, redirect  
+       //  header("Location: addpatterndata.php");  
+       exit();
 }
 ?>
 

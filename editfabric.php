@@ -16,11 +16,11 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
- // Check if an ID is provided in the URL
+ // Check if ID in URL
 if (isset($_GET['fabric_id']) && is_numeric($_GET['fabric_id'])) {
     $id = $_GET['fabric_id'];
  
-    // Fetch the fabric data based on the ID
+    // Fetch data  
     $sql = "SELECT fabric_id, name, description, material, image, stock FROM Fabric_Inventory WHERE fabric_id = ?";  
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
@@ -30,14 +30,14 @@ if (isset($_GET['fabric_id']) && is_numeric($_GET['fabric_id'])) {
     if ($result->num_rows == 1) {
         $fabric = $result->fetch_assoc();
     } else {
-        // If the ID is not found, redirect back to the inventory page
-    //    header("Location: addfabricdata.php"); // Adjust to your inventory page
+        // If ID is not found, redirect  
+        // header("Location: addfabricdata.php");  
         exit();
     }
     $stmt->close();
 } else {
-    // If no valid ID is provided, redirect back to the inventory page
-  //  header("Location: addfabricdata.php"); // Adjust to your inventory page
+    // no valid ID  
+   //  header("Location: addfabricdata.php");  
     exit();
 }
 ?>

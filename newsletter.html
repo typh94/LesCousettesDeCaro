@@ -1,261 +1,356 @@
- 
-
 <!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!--goog font--> 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=DM+Serif+Text:ital@0;1&family=Dancing+Script:wght@500&family=Dynalight&family=Playwrite+HR+Lijeva:wght@300&family=Roboto:wght@236&display=swap" rel="stylesheet">
-  
-  
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=DM+Serif+Text:ital@0;1&family=Dancing+Script:wght@500&family=Dynalight&family=Playwrite+HR+Lijeva:wght@300&family=Roboto:wght@236&display=swap" rel="stylesheet">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/buttonNewsletter.css">
 
     <title>Newsletter page</title>
 
-  
-    
     <style>
-        .header{
-            background-color: rgba(0, 255, 255, 0.513);
-            padding: 3em;
-            font-family: "cursiveF";
-            margin-left: -1em;
-            margin-right: 100em;
-            color: rgb(49, 47, 47);
-        }
-        h1{
-            text-align: center;
-            font-family: cursiveF;
-        }
-        .marginR{
-            margin-right: 1em;
-        }
-        .container-fluid{
-            
-        }
-
-        /*google font*/
-
-        .dancing-script-cursiveF{
-            font-family: "Dancing Script", cursive;
-            font-optical-sizing: auto;
-            font-weight: 500;
-            font-style: normal;
-        }
-        .playwrite-hr-lijeva-cursiveF {
-            font-family: "Playwrite HR Lijeva", cursive;
-            font-optical-sizing: auto;
-            font-weight: 300;
-            font-style: normal;
-        }
-        
-        .roboto-cursiveF {
-            font-family: "Roboto", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 236;
-            font-style: normal;
-            font-variation-settings:
-                "wdth" 100;
-        }
-        
-        .bruno-ace-sc-regular {
-            font-family: "Bruno Ace SC", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-        
-        .dm-serif-text-regular {
-            font-family: "DM Serif Text", serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        .dm-serif-text-regular-italic {
-            font-family: "DM Serif Text", serif;
-            font-weight: 400;
-            font-style: italic;
-        }
-        
-        .dynalight-regular {
-            font-family: "Dynalight", cursive;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        .bg-light{
-          background-color: #00ffff7e!important;
-           box-shadow: 5.4px 10.7px 10.7px hsl(0deg 0% 0% / 0.33);
-
-        }
-        .nav-link:hover{
-          background-color: white;
-          border-radius: 10px;
-        }
-       .paddingColMd{
-        padding-right: 2em;
-       }
-       .mainBox{
-        background-color: rgba(220, 216, 84, 0.554);
+      .contactBox {
+        background-color: #e3f2fd;
         padding: 5em;
-        border-radius: 10px;
-       }
-       .footer
-       {
-        background-color:#00ffff7e ;
-        padding: 3em;
- 
-       }
-       .contactBox{
-        background-color: #8b4dd329;
-        padding: 5em;
-        border-radius: 10px;
+        border-radius: 15px;
         text-align: center;
-        size: 3em;
-       }
-       .submit{
-        background-color: red;
-       }
-        input {
-     background-color: rgba(0, 0, 255, 0.131);
-     border: none;
-     border-radius: 10px;
-     padding: 0.5em;
-}
-.buttonS{
-    padding-left: 2em;
-    padding-right: 2em;
-}
+        border: 2px solid #90caf9;
+      }
 
+      .buttonS:hover {
+        background-color: #1e88e5;
+      }
 
+      label {
+        color: #0d47a1;
+        font-weight: bold;
+      }
+
+      .alignleft {
+        float: left;
+        padding: .5em;
+      }
+
+      .header1 {
+        height: fit-content;
+      }
+
+      .newsletterBox {
+        background-color: #e3f2fd;
+        padding: 5em;
+        border-radius: 15px;
+        text-align: center;
+        border: 2px solid #90caf9;
+      }
+
+      .newsletterBox #email {
+        margin-bottom: 1em;
+      }
+
+      .newsletterBox .buttonS {
+        background-color: #42a5f5;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 0.5em 2em;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .newsletterBox .buttonS:hover {
+        background-color: #1e88e5;
+      }
+
+      .form2 {
+        --input-focus: #2d8cf0;
+        --font-color: #323232;
+        --font-color-sub: #666;
+        --bg-color: beige;
+        --main-color: black;
+        padding: 20px;
+        background: rgba(0, 255, 255, 0.257);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+        border-radius: 5px;
+        border: 2px solid var(--main-color);
+        box-shadow: 4px 4px var(--main-color);
+      }
+
+      .title {
+        color: var(--font-color);
+        font-weight: 900;
+        font-size: 20px;
+        margin-bottom: 25px;
+      }
+
+      .title span {
+        color: var(--font-color-sub);
+        font-weight: 600;
+        font-size: 17px;
+      }
+
+      .input {
+        width: 250px;
+        height: 40px;
+        border-radius: 5px;
+        border: 2px solid var(--main-color);
+        background-color: var(--bg-color);
+        box-shadow: 4px 4px var(--main-color);
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--font-color);
+        padding: 5px 10px;
+        outline: none;
+        margin: .5em;
+        margin-top: 2em;
+      }
+
+      .input::placeholder {
+        color: var(--font-color-sub);
+        opacity: 0.8;
+      }
+
+      .input:focus {
+        border: 2px solid var(--input-focus);
+      }
+
+      .login-with {
+        display: flex;
+        gap: 20px;
+      }
+
+      .button-log {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        border: 2px solid var(--main-color);
+        background-color: var(--bg-color);
+        box-shadow: 4px 4px var(--main-color);
+        color: var(--font-color);
+        font-size: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        fill: var(--main-color);
+      }
+
+      .button-log:active, .button-confirm:active {
+        box-shadow: 0px 0px var(--main-color);
+        transform: translate(3px, 3px);
+      }
+
+      .button-confirm {
+        margin: 50px auto 0 auto;
+        width: 120px;
+        height: 40px;
+        border-radius: 5px;
+        border: 2px solid var(--main-color);
+        background-color: var(--bg-color);
+        box-shadow: 4px 4px var(--main-color);
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--font-color);
+        cursor: pointer;
+      }
+
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .form_area {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgba(237, 220, 217, 0.69);
+        height: auto;
+        width: auto;
+        border: 2px solid #264143;
+        border-radius: 20px;
+        box-shadow: 3px 4px 0px 1px rgba(233, 160, 76, 0.61);
+      }
+
+      .title {
+        color: #264143;
+        font-weight: 900;
+        font-size: 1.5em;
+        margin-top: 20px;
+      }
+
+      .sub_title {
+        font-weight: 600;
+        margin: 5px 0;
+      }
+
+      .form_group {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        margin: 10px;
+      }
+
+      .form_style {
+        outline: none;
+        border: 2px solid #264143;
+        box-shadow: 3px 4px 0px 1px rgba(233, 160, 76, 0.61);
+        width: 290px;
+        padding: 12px 10px;
+        border-radius: 4px;
+        font-size: 15px;
+      }
+
+      .form_style:focus, .btn:focus {
+        transform: translateY(4px);
+        box-shadow: 1px 2px 0px 0px rgba(233, 160, 76, 0.61);
+      }
+
+      .btn {
+        padding: 15px;
+        margin: 25px 0px;
+        width: 290px;
+        font-size: 15px;
+        background: rgba(0, 255, 255, 0.29);
+        border-radius: 10px;
+        font-weight: 800;
+        box-shadow: 3px 3px 0px 0px #E99F4C;
+      }
+
+      .btn:hover {
+        opacity: .9;
+      }
+
+      .link {
+        font-weight: 800;
+        color: #264143;
+        padding: 5px;
+      }
+
+      input {
+        background-color: rgba(0, 255, 255, 0.29);
+      }
     </style>
-
-
-  
   </head>
-
 
   <body>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9Q+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
- 
 
-
-
-    <div class="container-fluid cursiveF">
-        <div class="col-md-12 header  cursiveF">
-            <h1 class="cursiveF">Les Cousettes De Caro</h1>
-
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 header1">
+          <img src="images/banner2.png">
         </div>
-   
-    </div><!--End container-->
+      </div>
+    </div>
+    <!-- End container -->
 
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-    
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse navigationHeader" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto center col-md-12">
-            <li class="nav-item active col-md-2">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown col-md-2">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Get in touch
-              </a>
-              <div class="dropdown-menu col-md-2" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item marginR" href="contact.html">Contact</a>
-                 <div class="dropdown-divider"></div>
-                 <a class="dropdown-item" href="newsletter.html">Newsletter</a>
-                </div>
-            </li>
-               <li class="nav-item col-md-2">
-                <a class="nav-link" href="#">Blog </a>
-              </li>
-  
-              <li class="nav-item col-md-2">
-                <a class="nav-link" href="dashboard.html">Dahboard </a>
-              </li>
-              <li class="nav-item col-md-2">
-                <a class="nav-link" href="#">Store </a>
-              </li>
-  
-              <li class="nav-item  ">
-                <a class="nav-link  " href="#">Analysis </a>
-              </li>
-  
-
-      
-          </ul>
-       
-        </div>
-      </nav>
-      
-      <br>
-      <div class="container-fluid  ">
-        <br>    <br>    <br>    <br>
-
-        <div class="row  ">
-          <div class="col-lg-3  ">
-          </div>
-          <div class="col-lg-6  contactBox   ">
-            <section class="wrapper">
-
-            <h4> Stay up to date with our latest updates ! </h4><br>
-
-            <form action="process_newletter.php" method="POST">
-                <input type="email" id="email" placeholder="Email" name="email">
-                <input type="submit" value="Subscribe" class="buttonS">
-            </form>
-        </section>
-
-
-          </div>
-        <div class="col-lg-3 ">
-        </div>
-        </div>
-        <br>    <br>
-    </div><!--End container-->
-
-    
-
-  
-
-
-
-
-
-
-
-<div class="container-fluid  ">
-  <br>    <br>
-
-  <div class="row footer ">
-       
-      <div class="col-lg-2">
-        logo
-      </div> 
-      <div class="col-lg-8">
-        Les Cousettes de Caro<br>
-        Contact Info
-
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse navigationHeader" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto center col-md-12">
+          <li class="nav-item active col-md-2">
+            <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown col-md-2">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Get in touch
+            </a>
+            <div class="dropdown-menu col-md-2" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item marginR" href="contact.html">Contact</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="newsletter.html">Newsletter</a>
+            </div>
+          </li>
+          <li class="nav-item col-md-2">
+            <a class="nav-link" href="#">Blog</a>
+          </li>
+          <li class="nav-item col-md-2">
+            <a class="nav-link" href="loginRegisterationSystem/login.php">Dashboard</a>
+          </li>
+          <li class="nav-item col-md-2">
+            <a class="nav-link" href="store.php">Store</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="analysis.php">Analysis</a>
+          </li>
+        </ul>
       </div>
-      <div class="col-lg-2">
-        link to social media
-      </div>
-     
-  </div>
-</div><!--End container-->
+    </nav>
+    <br>
 
- 
-</body>
+    <div class="container-fluid">
+      <br><br><br><br>
+      <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+          <section class="wrapper">
+            <div class="container">
+              <div class="form_area">
+                <div class="title">Join the Sewing Circle,<br><span>sign up to our Newsletter</span></div>
+                <form class="" id="newsletterForm" action="process_newletter.php" method="POST" onsubmit="return validateForm()">
+                  <div class="form_group">
+                    <label for="email" class="alignleft sub_title">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" class="form_style">
+                  </div>
+                  <div>
+                    <button type="submit" class="btn">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="col-lg-4"></div>
+      </div>
+      <br><br>
+    </div>
+    <!-- End container -->
+
+    <div class="container-fluid">
+      <br><br>
+      <div class="row footer">
+        <div class="col-lg-2">
+          logo
+        </div>
+        <div class="col-lg-8">
+          Les Cousettes de Caro<br>
+          Contact Info
+        </div>
+        <div class="col-lg-2">
+          link to social media
+        </div>
+      </div>
+    </div>
+    <!-- End container -->
+
+    <script src="js/newsletter.js"></script>
+  </body>
 </html>

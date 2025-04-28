@@ -1,0 +1,123 @@
+.styleFont {
+    font-family: 'Send Flowers';
+    font-size: 3em;
+    color: #000080;
+}
+.header1 {
+    background-color: rgba(0, 255, 255, 0.428);
+    padding: 1em;
+    font-family: "cursiveF";
+    color: rgb(49, 47, 47);
+    text-align: center;
+}
+h1 {
+    text-align: center;
+    font-family: cursiveF;
+}
+.marginR {
+    margin-right: 1em;
+}
+.container-fluid {
+}
+.dancing-script-cursiveF {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+.playwrite-hr-lijeva-cursiveF {
+    font-family: "Playwrite HR Lijeva", cursive;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+.roboto-cursiveF {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 236;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+.bruno-ace-sc-regular {
+    font-family: "Bruno Ace SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.dm-serif-text-regular {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.dm-serif-text-regular-italic {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: italic;
+}
+.dynalight-regular {
+    font-family: "Dynalight", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+.bg-light {
+    background-color: rgba(0, 255, 255, 0.428) !important;
+    box-shadow: 5.4px 10.7px 10.7px hsl(0deg 0% 0% / 0.33);
+}
+.nav-link:hover {
+    background-color: white;
+    border-radius: 10px;
+}
+.paddingColMd {
+    padding-right: 2em;
+}
+.mainBox {
+    background-color: #a0512d55;
+    padding: 5em;
+    border-radius: 10px;
+}
+.footer {
+    background-color: #00ffff7e;
+    padding: 3em;
+}
+.adjust {
+    background-color: rgba(255, 0, 0, 0.601);
+    padding: 5em;
+    border-radius: 10px;
+}
+.imgBox {
+    padding: 1em;
+    background: white;
+    border: 1px solid black;
+    margin-right: 1em;
+    padding-bottom: 2em;
+}
+img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+.bottom {
+    align-items: flex-end;
+}
+.welcomebox {
+    padding: 2em;
+    border-radius: 10px;
+}
+.titlefont {
+    font-family: 'Birthstone';
+    font-size: 2.5em;
+}
+.img-bottom {
+    width: 50%;
+    height: 50%;
+}
+.footerstyle {
+    background-color: rgba(0, 255, 255, 0.428);
+    text-align: center;
+    padding: 2em;
+}
+h3 {
+    text-align: center;
+}
+.filterbox {
+    margin-left: 9em;
+}

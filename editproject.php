@@ -16,12 +16,12 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
- // Check if an ID is provided in the URL
+ // Check if ID in URL
 if (isset($_GET['project_id']) && is_numeric($_GET['project_id'])) {
     $id = $_GET['project_id'];
  
-    // Fetch the project data based on the ID
-    $sql = "SELECT project_id, name, description, status, image FROM Project_Inventory WHERE project_id = ?"; // Assuming primary key is project_id
+    // Fetch data
+    $sql = "SELECT project_id, name, description, status, image FROM Project_Inventory WHERE project_id = ?";  
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -30,15 +30,15 @@ if (isset($_GET['project_id']) && is_numeric($_GET['project_id'])) {
     if ($result->num_rows == 1) {
         $project = $result->fetch_assoc();
     } else {
-        // If the ID is not found, redirect back to the inventory page
-    //    header("Location: addprojectdata.php"); // Adjust to your inventory page
-        exit();
+        // If ID is not found, redirect  
+       //  header("Location: addprojectdata.php");  
+       exit();
     }
     $stmt->close();
 } else {
-    // If no valid ID is provided, redirect back to the inventory page
-  //  header("Location: addprojectdata.php"); // Adjust to your inventory page
-    exit();
+        // If ID is not found, redirect  
+       //  header("Location: addprojectdata.php");  
+       exit();
 }
 ?>
 

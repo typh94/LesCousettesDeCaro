@@ -43,7 +43,7 @@ if (isset($_POST['update']) && isset($_POST['id']) && is_numeric($_POST['id'])) 
 
         // Move the new uploaded image
         if (move_uploaded_file($tempname, $folder)) {
-            // Update the image path in the database
+            // Update image path  
             $sql_image = "UPDATE Tutorial_Inventory SET image = ? WHERE id = ?";
             $stmt_image = $conn->prepare($sql_image);
             $stmt_image->bind_param("si", $filename, $tutorial_id);
@@ -55,7 +55,7 @@ if (isset($_POST['update']) && isset($_POST['id']) && is_numeric($_POST['id'])) 
         }
     }
 
-    header("Location: addtutorialdata.php?message=" . urlencode($msg)); // Redirect back to your tutorial list
+    header("Location: addtutorialdata.php?message=" . urlencode($msg));  
     exit();
 } else {
     // If the update form wasn't submitted correctly

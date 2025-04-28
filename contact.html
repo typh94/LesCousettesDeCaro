@@ -12,31 +12,129 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   
     <!-- External CSS -->
-   <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="contact.css">
 
     <title>Contact page</title>
     <style>
-      
-  
       .contactBox {
-        background-color: #8b4dd329;
+        background-color: #e3f2fd;
         padding: 5em;
-        border-radius: 10px;
-        text-align: center;
-        size: 3em;
-      }
-      .submit {
-        background-color: red;
+        border-radius: 15px;
+        text-align: justify; /* Justify text for better readability */
+        border: 2px solid #90caf9;
       }
       input {
-        background-color: rgba(0, 0, 255, 0.131);
-        border: none;
+        background-color: #bbdefb;
+        border: 1px solid #64b5f6;
         border-radius: 10px;
         padding: 0.5em;
+        width: calc(100% - 1em);
+        box-sizing: border-box;
+        color: #0d47a1;
+      }
+      #message {
+        height: 5em;
+        padding: 1em;
       }
       .buttonS {
-        padding-left: 2em;
-        padding-right: 2em;
+        background-color: #42a5f5;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 0.5em 2em;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .buttonS:hover {
+        background-color: #1e88e5;
+      }
+      label {
+        color: #0d47a1;
+        font-weight: bold;
+      }
+      .alignleft {
+        float: left;
+        padding: 0.5em;
+      }
+      .header1 {
+        height: auto; 
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: justify; 
+      }
+      .form_area {
+        display: flex;
+        justify-content: flex-start; 
+        align-items: flex-start;
+        flex-direction: column;
+        background-color: rgba(237, 220, 217, 0.69);
+        height: auto;
+        width: auto;
+        border: 2px solid #264143;
+        border-radius: 20px;
+        box-shadow: 3px 4px 0px 1px rgba(233, 160, 76, 0.61);
+        text-align: center; 
+      }
+      .title {
+        color: #264143;
+        font-weight: 900;
+        font-size: 1.5em;
+        margin-top: 20px;
+        text-align: center; 
+        padding-left: 0.5em;
+      }
+      .sub_title {
+        font-weight: 600;
+        margin: 5px 0;
+        text-align: justify; 
+      }
+      .form_group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+        margin: 10px;
+        width: 100%; 
+        text-align: justify; 
+      }
+      .form_style {
+        outline: none;
+        border: 2px solid #264143;
+        box-shadow: 3px 4px 0px 1px rgba(233, 160, 76, 0.61);
+        width: 290px;
+        padding: 12px 10px;
+        border-radius: 4px;
+        font-size: 15px;
+      }
+      .form_style:focus, .btn:focus {
+        transform: translateY(4px);
+        box-shadow: 1px 2px 0px 0px rgba(233, 160, 76, 0.61);
+      }
+      .btn {
+        padding: 15px;
+        margin: 25px 0px;
+        width: 290px;
+        font-size: 15px;
+        background: rgba(0, 255, 255, 0.29);
+        border-radius: 10px;
+        font-weight: 800;
+        box-shadow: 3px 3px 0px 0px #E99F4C;
+        align-self: center; 
+      }
+      .btn:hover {
+        opacity: 0.9;
+      }
+      .link {
+        font-weight: 800;
+        color: #264143;
+        padding: 5px;
+      }
+      input {
+        background-color: rgba(0, 255, 255, 0.29);
       }
     </style>
   </head>
@@ -45,15 +143,13 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!--  Code stats here -->
     <div class="container-fluid">
       <div class="row">
-          <div class="col-md-12 header1">
-              <img src="images/banner2.png">
-          </div>
+        <div class="col-md-12 header1">
+          <img src="images/banner2.png">
+        </div>
       </div>
-  </div>
-  <!-- End container -->
+    </div>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -77,41 +173,45 @@
             <a class="nav-link" href="#">Blog</a>
           </li>
           <li class="nav-item col-md-2">
-            <a class="nav-link" href="dashboard.html">Dashboard</a>
+            <a class="nav-link" href="loginRegisterationSystem/login.php">Dashboard</a>
           </li>
           <li class="nav-item col-md-2">
-            <a class="nav-link" href="#">Store</a>
+            <a class="nav-link" href="store.php">Store</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="analysis.html">Analysis</a>
+            <a class="nav-link" href="analysis.php">Analysis</a>
           </li>
         </ul>
       </div>
     </nav>
-    <br>
-    <div class="container-fluid">
-      <br><br><br><br>
-      <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6 contactBox">
-          <h4>Let's stay in touch!</h4><br>
-          <form action="process_form.php" method="POST">
-            <label for="fname">First name:</label><br>
-            <input type="text" id="fname" name="fname"><br><br>
-            <label for="lname">Last name:</label><br>
-            <input type="text" id="lname" name="lname"><br><br>
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email"><br><br>
-            <label for="message">Message:</label><br>
-            <input type="text" id="message" name="message"><br><br>
-            <input type="submit" value="Submit" class="buttonS">
-          </form>
-        </div>
-        <div class="col-lg-3"></div>
+    <br><br><br><br><br>
+    <div class="container">
+      <div class="form_area">
+        <p class="title">Let's stay in touch!</p>
+        <form id="contactForm" action="process_form.php" method="POST">
+          <div class="form_group">
+            <label for="fname" class="alignleft sub_title">First name:</label>
+            <input type="text" id="fname" name="fname" placeholder="Enter your name" class="form_style">
+          </div>
+          <div class="form_group">
+            <label for="lname" class="alignleft sub_title">Last name:</label>
+            <input type="text" id="lname" name="lname" placeholder="Enter your last name" class="form_style">
+          </div>
+          <div class="form_group">
+            <label for="email" class="alignleft sub_title">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" class="form_style">
+          </div>
+          <div class="form_group">
+            <label for="message" class="alignleft sub_title">Message:</label>
+            <input type="message" id="message" name="message" placeholder="Enter your message" class="form_style">
+          </div>
+          <div>
+            <button type="submit" class="btn">Submit</button>
+          </div>
+        </form>
       </div>
-      <br><br>
     </div>
-    <!-- End container -->
+    <br><br><br>
     <div class="container-fluid">
       <br><br>
       <div class="row footer">
@@ -123,6 +223,6 @@
         <div class="col-lg-2">link to social media</div>
       </div>
     </div>
-    <!-- End container -->
+    <script src="js/validation.js"></script>
   </body>
 </html>

@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<body>";
         echo "<h1>$first_name, your message has been submitted successfully!</h1>";
 
-        echo "<p><a href='contact.html'>Go back to the form</a></p>";
+        echo "<p><a href='home.php'>Go back home</a></p>";
         echo "</body>";
         echo "</html>";
     } else {

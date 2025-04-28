@@ -56,7 +56,13 @@ if (isset($_POST['submit'])) {
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #00343a;
+            color: white;
+            text-align: center;
+
+        }
+        table{
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.22);
         }
     </style>
 </head>
@@ -97,33 +103,36 @@ if (isset($_POST['submit'])) {
         </button>
         <div class="collapse navbar-collapse navigationHeader" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto center col-md-12">
-                <li class="nav-item active col-md-2">
-                    <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+              <li class="nav-item active col-md-2">
+                <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item dropdown col-md-2">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Get in touch
+                </a>
+                <div class="dropdown-menu col-md-2" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item marginR" href="contact.html">Contact</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="newsletter.html">Newsletter</a>
+                </div>
+                  </li>
+                 <li class="nav-item col-md-2">
+                  <a class="nav-link" href="#">Blog </a>
                 </li>
-                <li class="nav-item dropdown col-md-2">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Get in touch
-                    </a>
-                    <div class="dropdown-menu col-md-2" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item marginR" href="contact.html">Contact</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="newsletter.html">Newsletter</a>
-                    </div>
+    
+                <li class="nav-item col-md-2">
+                  <a class="nav-link" href="loginRegisterationSystem/dashboard2.php">Dashboard</a>
                 </li>
                 <li class="nav-item col-md-2">
-                    <a class="nav-link" href="#">Blog</a>
+                  <a class="nav-link" href="store.php">Store </a>
                 </li>
-                <li class="nav-item col-md-2">
-                    <a class="nav-link" href="dashboard.html">Dashboard</a>
-                </li>
-                <li class="nav-item col-md-2">
-                    <a class="nav-link" href="store.html">Store</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="analysis.html">Analysis</a>
+    
+                <li class="nav-item  ">
+                  <a class="nav-link  " href="analysis.php">Analysis </a>
                 </li>
             </ul>
-        </div>
+         
+          </div>
     </nav>
     <br>
     <h1>Tutorial Inventory</h1>
@@ -136,8 +145,8 @@ if (isset($_POST['submit'])) {
                 <option value="started" <?php if (isset($_GET['filter_status']) && $_GET['filter_status'] == 'started') echo 'selected'; ?>>Started</option>
                 <option value="not started" <?php if (isset($_GET['filter_status']) && $_GET['filter_status'] == 'not started') echo 'selected'; ?>>Not Started</option>
                 <option value="incomplete" <?php if (isset($_GET['filter_status']) && $_GET['filter_status'] == 'incomplete') echo 'selected'; ?>>Incomplete</option>
-            </select>
-            <label for="filter_name" style="margin-left: 20px;">Filter by Name:</label>
+            </select><br>
+            <label for="filter_name" style=" ">Filter by Name:</label>
             <input type="text" name="filter_name" id="filter_name" value="<?php echo isset($_GET['filter_name']) ? htmlspecialchars($_GET['filter_name']) : ''; ?>" placeholder="Enter tutorial name">
             <button type="submit" class="btn btn-secondary btn-sm" style="margin-left: 10px;">Filter</button>
             <?php if (isset($_GET['filter_status']) || isset($_GET['filter_name'])): ?>
@@ -208,6 +217,11 @@ if (isset($_POST['submit'])) {
     }
     ?>
 </body>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </html>
 <?php
 $conn->close();

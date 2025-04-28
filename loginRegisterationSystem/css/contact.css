@@ -1,0 +1,42 @@
+
+.contactBox {
+    background-color: #e3f2fd;  
+    padding: 5em;
+    border-radius: 15px;  
+    text-align: center;
+    border: 2px solid #90caf9;  
+  }
+  input {
+    background-color: #bbdefb; 
+    border: 1px solid #64b5f6;  
+    border-radius: 10px;
+    padding: 0.5em;
+    width: calc(100% - 1em);
+    box-sizing: border-box;
+    color: #0d47a1;  
+  }
+  #message {
+    height: 5em;
+    padding: 1em;
+    background-color: #90caf9;  
+  }
+  .buttonS {
+    background-color: #42a5f5;  
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 0.5em 2em;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .buttonS:hover {
+    background-color: #1e88e5;  
+  }
+  label {
+    color: #0d47a1;  
+    font-weight: bold;
+  }
+  .alignleft{
+    float: left;
+    padding: .5em;      }
+
